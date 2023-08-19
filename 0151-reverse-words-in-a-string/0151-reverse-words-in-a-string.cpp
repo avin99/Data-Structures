@@ -1,15 +1,19 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        string result = "";
-        int n = s.size();
-        for (int i = n - 1 ; i >= 0 ; i--){
-            int k = i;
-            if(s[i] == ' ')continue;
-            while(i >= 0 && s[i] != ' ')i--;
-            result += s.substr(i + 1, k - i) + ' ';
+        vector<string>words;
+        string tmp;
+        stringstream ss(s);
+        while(ss >> tmp){
+            words.push_back(tmp);
         }
-        if(result.back() == ' ')result.pop_back();
+        string result = "";
+        for(int i = 0 ; i < words.size() ; i++){
+            if(i == 0)
+            result = words[i];
+            else
+            result = words[i]+ " " + result;
+        }
         return result;
     }
 };
