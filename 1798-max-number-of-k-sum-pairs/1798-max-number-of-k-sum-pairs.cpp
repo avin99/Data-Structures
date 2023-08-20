@@ -6,21 +6,18 @@ public:
             mp[ele]++;
         }
         int cnt = 0;
-        for(int i = 0 ; i < nums.size() ; i++){
-            if(mp.find(k-nums[i]) != mp.end()){
-                if(k - nums[i] == nums[i]){
-                    if(mp[nums[i]] < 2)continue;
-                    mp[nums[i]]-=2;
-                    if(mp[nums[i]] <= 0)mp.erase(nums[i]);
-                    cnt++;
-                }else{
-                    if(mp[nums[i]] < 1 or mp[k - nums[i]] < 1)continue;
-                    mp[k-nums[i]]--;
-                    mp[nums[i]]--;
-                    if(mp[k - nums[i]] <= 0)mp.erase(k - nums[i]);
-                    if(mp[nums[i]] <= 0)mp.erase(nums[i]);
-                    cnt++;
-                }
+        for(auto it = mp.begin() ; it != mp.end() ; it++){
+            int val = it->first;
+            int freq = it->second;
+            if(val == k - val){
+                cnt += freq / 2;
+            }else{
+                int secondVal = k - val;
+                if(mp.find(secondVal) == mp.end())continue;
+                int mn = min(freq , mp[secondVal]);
+                cnt += mn;
+                mp[val] -= mn;
+                mp[secondVal] -= mn;
             }
         }
         return cnt;
