@@ -18,12 +18,7 @@ public:
                     }
                     if(!intStack.empty() && intStack.top() > 0 && intStack.top() == abs(asteroids[i])){
                         intStack.pop();
-                    }else if(!intStack.empty() && intStack.top() > 0 && intStack.top() < abs(asteroids[i])){
-                        intStack.pop();
-                        intStack.push(asteroids[i]);
-                    }else if(!intStack.empty() && intStack.top() < 0){
-                        intStack.push(asteroids[i]);
-                    }else if(intStack.empty()){
+                    }else if(intStack.empty() || intStack.top() < 0){
                         intStack.push(asteroids[i]);
                     }
                 }
