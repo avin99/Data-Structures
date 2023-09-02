@@ -17,12 +17,11 @@ public:
         Helper(root, countOfGoodNodes, maxi);
         return countOfGoodNodes;
     }
-    void Helper(TreeNode* root, int &countOfGoodNodes, int &maxi){
+    void Helper(TreeNode* root, int &countOfGoodNodes, int maxi){
         if(!root)return;
         maxi = max(maxi, root -> val);
         if(root -> val >= maxi)countOfGoodNodes++;
-        int maxTillNow = maxi;
         Helper(root -> left, countOfGoodNodes, maxi);
-        Helper(root -> right, countOfGoodNodes, maxTillNow);
+        Helper(root -> right, countOfGoodNodes, maxi);
     }
 };
