@@ -17,10 +17,11 @@ public:
         queue<TreeNode*> intQueue;
         intQueue.push(root);
         while(!intQueue.empty()){
-            for(int i = intQueue.size() ; i > 0 ; i--){
+            int size = intQueue.size();
+            for(int i = 0 ; i < size ; i++){
                 TreeNode *node = intQueue.front();
                 intQueue.pop();
-                if(i == 1)ans.push_back(node -> val);
+                if(i == size - 1)ans.push_back(node -> val);
                 if(node -> left)intQueue.push(node -> left);
                 if(node ->right)intQueue.push(node -> right);
             }
