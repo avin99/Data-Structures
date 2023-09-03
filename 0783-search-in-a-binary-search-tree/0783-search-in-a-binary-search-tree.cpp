@@ -11,12 +11,9 @@
  */
 class Solution {
 public:
-TreeNode *ans;
     TreeNode* searchBST(TreeNode* root, int val) {
-        if(!root)return NULL;
-        if(root -> val == val){ans = root;return root;}
-        if(val > root -> val)searchBST(root -> right, val);
-        else searchBST(root -> left, val);
-        return ans;
+        if(!root || root -> val == val)return root;
+        if(val > root -> val) return searchBST(root -> right, val);
+        else return searchBST(root -> left, val);
     }
 };
